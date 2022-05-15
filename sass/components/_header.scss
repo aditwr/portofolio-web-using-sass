@@ -1,0 +1,175 @@
+@use '../reset';
+@use '../breakpoints' as breakpoint;
+@use '../design-systems' as ds;
+@use '../mixins' as mixin;
+
+header {
+    background-color: ds.$primary-color;
+    position: relative;
+    padding: 6px 0;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.container-responsive {
+    @include mixin.container-responsive();
+}
+
+.hamburger-menu {
+    position: absolute;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    padding: 10px 4px 2px;
+    cursor: pointer;
+    transition: all 300ms ease-in;
+
+    span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: ds.$on-primary-color;
+        margin-bottom: 4px;
+    }
+    span:nth-child(2){
+        width: 14px;
+    }
+
+    @include breakpoint.mobile-large() {
+        display: none;
+    }
+}
+
+nav {
+    @include breakpoint.mobile {
+        overflow: hidden;
+    }
+    @include breakpoint.mobile-large {
+        @include mixin.flex(row, space-around, center);
+    }
+    width: 100%;
+    height: 36px; // after: 230px
+    transition: all 300ms ease-in-out;
+
+    .brand {
+        width: 50%;
+        height: 36px;
+        @include mixin.flex(row, start, center);
+        
+        &_img {
+            @include mixin.dimention(auto, 20px);
+            opacity: 0.8;
+        }
+
+        &_name {
+            font-family: ds.$primary-typeface;
+            color: ds.$on-primary-color;
+            font-size: map-get($map: ds.$heading, $key: heading6);
+        }
+    }
+
+    .nav-menu {
+        width: 100%;
+        height: 128px;
+        @include breakpoint.mobile-large {
+            height: 100%;
+        }
+        margin: 16px 0;
+
+        ul {
+            height: 100%;
+            width: 100%;
+            @include mixin.flex(column, space-around, center);
+            @include breakpoint.mobile-large {
+                @include mixin.flex(row, center, center);
+            }
+
+
+            li {
+                padding: 4px 8px;
+                margin: 0 8px;
+                height: 100%;
+                @include mixin.flex(row, center, center);
+            }
+            .nav-menu_item_active {
+                border-bottom: 2px solid ds.$secondary-color;
+                @include breakpoint.mobile-large {
+                    border-bottom: 3px solid ds.$secondary-color;
+                }
+                a {
+                    @include breakpoint.mobile-large {
+                        transform: translate(0, 1px);
+                    }
+                }
+            }
+
+            a {
+                font-family: ds.$primary-typeface;
+                color: rgba(ds.$on-primary-color, 0.7);
+                font-size: map-get($map: ds.$paragraph, $key: paragraph2);
+                text-decoration: none;
+                &:hover {
+                    color: rgba(ds.$on-primary-color, 1);
+                }
+            }
+        }
+
+    }
+
+
+    .nav-cta {
+        @include mixin.flex(row, center, center);
+        &_button {
+            @include mixin.flex(row, center, center);
+            width: 100px;
+            height: 30px;
+            background-color: ds.$secondary-color;
+            color: ds.$on-secondary-color;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+    }
+}
+
+nav.nav-menu_active {
+    height: 250px;
+    justify-content: start;
+}
+
+
+// hamburger span active animation
+.hamburger-span-1-active {
+    transition: all 300ms ease-in;
+    transform-origin: top right;
+    transform: rotate(-40deg) translate(1px,0);
+}
+
+.hamburger-span-2-active {
+    transition: all 300ms ease-in;
+    transform: scale(0);
+}
+
+.hamburger-span-3-active {
+    transition: all 300ms ease-in;
+    transform-origin: bottom right;
+    transform: rotate(40deg);
+    
+}
+
+// hamburger span nonactive animation 
+
+.hamburger-span-1-nonactive {
+    transition: all 300ms ease-in;
+    transform-origin: top right;
+    transform: rotate(0);
+}
+.hamburger-span-2-nonactive {
+    transition: all 300ms ease-in;
+    transform: scale(1);
+}
+.hamburger-span-3-nonactive {
+    transition: all 300ms ease-in;
+    transform-origin: bottom right;
+    transform: rotate(0);
+}

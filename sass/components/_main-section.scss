@@ -1,0 +1,191 @@
+@use '../breakpoints' as breakpoint;
+@use '../design-systems' as ds;
+@use '../mixins' as mixin;
+
+
+.main-container {
+    height: 100%;
+    @include mixin.flex(column, center, center);
+}
+
+.grid-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: 
+    "grid-area-1"
+    "grid-area-2"
+    "grid-area-3"
+    "grid-area-4";
+    text-align: center;
+    grid-template-rows: 24vh 42vh 16vh 14vh;
+    overflow: hidden;
+    @include breakpoint.desktop {
+        grid-template-areas: 
+        "grid-area-2 grid-area-1"
+        "grid-area-2 grid-area-3"
+        "grid-area-2 grid-area-4";
+        text-align: left;
+        grid-template-columns: 0.6fr 1fr;
+        grid-template-rows: 1.4fr 0.6fr 1fr;
+    }
+    @include breakpoint.desktop-large {
+        grid-template-areas: 
+        "grid-area-2 grid-area-1"
+        "grid-area-2 grid-area-3"
+        "grid-area-2 grid-area-4";
+        text-align: left;
+        grid-template-columns: 0.8fr 1fr;
+        grid-template-rows: 1.4fr 0.6fr 1fr;
+    }
+}
+
+.grid-area-1 {
+    // margin: 16px 0;
+    padding-bottom: 32px;
+    @include mixin.flex(column, end, center);
+    @include breakpoint.desktop {
+        margin: 0;
+        padding-left: 10%;
+        @include mixin.flex(column, end, start);
+    }
+    grid-area: grid-area-1;
+    h3.say-hi {
+        font-weight: 500;
+        font-size: 1.4rem;
+        @include breakpoint.desktop {
+            font-size: 2rem;
+            transform: translateY(28px);
+        
+        }
+        @include breakpoint.desktop-large {
+            font-size: 2.4rem;
+            transform: translateY(32px);
+        
+        }
+        margin-bottom: 8px;
+        opacity: 0.8;
+    }
+    h1.introduce {
+        font-size: 1.8rem;
+        @include breakpoint.desktop {
+            font-size: 2.8rem;
+            transform: translateY(28px);
+        }
+        @include breakpoint.desktop-large {
+            font-size: 3.2rem;
+            transform: translateY(32px);
+        }
+        font-weight: 600;
+        color: rgba(ds.$primary-color, 0.9);
+        .my-name {
+            color: ds.$secondary-color;
+        }
+    }
+}
+.grid-area-2 {
+    // margin: 16px 0;
+    @include breakpoint.mobile {
+        @include mixin.flex(column, center, center);
+    }
+    @include breakpoint.mobile-large {
+        @include mixin.flex(column, center, center);
+    }
+    @include breakpoint.desktop {
+        margin: 0;
+    }
+    grid-area: grid-area-2;
+    .profile-image {
+        @include breakpoint.mobile {
+            width: 80%;
+        }
+        @include breakpoint.mobile-large {
+            width: 50%;
+        }
+        @include breakpoint.desktop {
+            width: 360px;
+
+        }
+        @include breakpoint.desktop-large {
+            width: 560px;
+        }
+    }
+}
+.grid-area-3 {
+    // margin: 16px 0;
+    @include breakpoint.mobile {
+        @include mixin.flex(column, center, center);
+    }
+    @include breakpoint.mobile-large {
+        @include mixin.flex(column, center, center);
+    }
+    @include breakpoint.desktop {
+        @include mixin.flex(column, center, start);
+        margin: 0;
+        padding-left: 10%;
+    }
+    grid-area: grid-area-3;
+    .work-info {
+        @include breakpoint.desktop {
+            font-size: 1.2rem;
+        }
+        @include breakpoint.desktop-large {
+            font-size: 1.6rem;
+        }
+        color: rgba(ds.$primary-color, 0.9);
+        font-weight: 500;
+        line-height: 130%;
+
+    }
+}
+.grid-area-4 {
+    // margin: 16px 0;
+    @include breakpoint.desktop {
+        margin: 0;
+        padding-left: 10%;
+    }
+    grid-area: grid-area-4;
+
+    .button-container {
+        @include mixin.flex(row, center, center);
+        @include breakpoint.desktop {
+            @include mixin.flex(row, start, center);
+        }
+    }
+
+    .button-primary {
+        padding: 10px 20px;
+        background-color: ds.$primary-color;
+        color: ds.$on-primary-color;
+        border-radius: 20px;
+        letter-spacing: 1px;
+        transform: translateX(-8px);
+        .text {
+            display: inline-block;
+            transform: translate(0, -2px);
+        }
+        .cta-icon {
+            height: 16px;
+            margin: 0 0 0 5px;
+            transform: translate(0, 1px);
+        }
+        @include breakpoint.desktop-large {
+            margin-right: 52px;
+            transform: scale(1.2);
+        }
+    }
+
+    .button-secondary {
+        @extend .button-primary;
+        font-weight: bold;
+        color: ds.$primary-color;
+        background-color: ds.$on-primary-color;
+        border: 2px solid ds.$primary-color;
+        transform: translateX(8px);
+        @include breakpoint.desktop-large {
+            margin-right: 52px;
+            transform: scale(1.2);
+        }
+    }
+
+}

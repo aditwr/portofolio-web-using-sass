@@ -1,0 +1,18 @@
+@use 'reset';
+@use 'breakpoints' as breakpoint;
+@use 'design-systems' as ds;
+@use 'mixins' as mixin;
+@use 'utilities' as utility;
+
+// component import
+@use 'components';
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: ds.$primary-typeface;
+    font-size: map-get($map: ds.$paragraph, $key: paragraph2)
+}
+
+
